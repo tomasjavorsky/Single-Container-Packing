@@ -5,7 +5,7 @@ import rootSaga from "./rootSaga";
 import packagingReducer from "./packaging/reducer";
 
 const rootReducer = combineReducers({
-  packagingReducer: packagingReducer
+  packagingReducer: packagingReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

@@ -8,7 +8,7 @@ import {
   FormTitle,
   StyledForm,
   InputFieldWrapper,
-  PackButton
+  PackButton,
 } from "../components/PackagingSetup/styled";
 import texts from "../texts";
 import { useFormik } from "formik";
@@ -24,7 +24,7 @@ import {
   InfoWrapper,
   InfoTitle,
   InfoItem,
-  InfoItemUnderline
+  InfoItemUnderline,
 } from "../components/PackagingInfo/styled";
 
 interface DispatchProps {
@@ -48,18 +48,18 @@ const PackagingSetup = ({ sendPackage, shipmentDetails }: Props) => {
       Wdt: "20",
       Hgt: "20",
       Dpt: "20",
-      MaxWgt: "50"
+      MaxWgt: "50",
     },
     validationSchema: Yup.object({
       containerId: Yup.number().required(),
       Wdt: Yup.number().required(),
       Hgt: Yup.number().required(),
       Dpt: Yup.number().required(),
-      MaxWgt: Yup.number().required()
+      MaxWgt: Yup.number().required(),
     }),
-    onSubmit: values => {
+    onSubmit: (values) => {
       console.log(values);
-    }
+    },
   });
 
   const itemFormik = useFormik({
@@ -70,7 +70,7 @@ const PackagingSetup = ({ sendPackage, shipmentDetails }: Props) => {
       Dpt: "5",
       Wgt: "5",
       Qty: "2",
-      vr: false
+      vr: false,
     },
     validationSchema: Yup.object({
       itemId: Yup.number().required(),
@@ -78,11 +78,11 @@ const PackagingSetup = ({ sendPackage, shipmentDetails }: Props) => {
       Hgt: Yup.number().required(),
       Dpt: Yup.number().required(),
       Wgt: Yup.number().required(),
-      Qty: Yup.number().required()
+      Qty: Yup.number().required(),
     }),
-    onSubmit: values => {
+    onSubmit: (values) => {
       console.log(values);
-    }
+    },
   });
 
   return (
@@ -336,7 +336,7 @@ const PackagingSetup = ({ sendPackage, shipmentDetails }: Props) => {
 
 const mapStateToProps = (state: ReduxTypes) => {
   return {
-    shipmentDetails: state.packagingReducer.shipmentDetails
+    shipmentDetails: state.packagingReducer.shipmentDetails,
   };
 };
 

@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const PackagingContainer = styled.div`
   width: 100%;
   max-width: 1280px;
-  min-height: 640px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   margin: 24px 24px 48px 24px;
   background-color: #f5f5f6;
   border-radius: 3px;
   box-shadow: 0 0 10px ${({ theme }) => theme.colors.shadow};
-
 `;
 
 export const Title = styled.h1`

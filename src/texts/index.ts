@@ -11,7 +11,7 @@ const texts = {
     Wgt: "Wgt",
     Qty: "Qty",
     Vr: "VR",
-    Add: "Add Item"
+    Add: "Add Item",
   },
   pack: "Pack",
   packingResult: "Packing result",
