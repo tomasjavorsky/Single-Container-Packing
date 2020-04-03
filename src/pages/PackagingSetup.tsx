@@ -16,15 +16,30 @@ import * as Yup from "yup";
 import { TextField } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { connect } from "react-redux";
+import ReduxTypes from "../store/@types";
+import { sendPackage } from "../store/packaging/actions";
 
-const PackagingSetup = () => {
+interface DispatchProps {
+  sendPackage: typeof sendPackage
+}
+
+interface StateProps {
+
+}
+
+interface Props extends StateProps, DispatchProps {
+
+}
+
+const PackagingSetup = ({sendPackage}: Props) => {
   const containerFormik = useFormik({
     initialValues: {
-      containerId: "",
-      Wdt: "",
-      Hgt: "",
-      Dpt: "",
-      MaxWgt: ""
+      containerId: "1",
+      Wdt: "20",
+      Hgt: "20",
+      Dpt: "20",
+      MaxWgt: "50"
     },
     validationSchema: Yup.object({
       containerId: Yup.number().required(),
@@ -40,12 +55,12 @@ const PackagingSetup = () => {
 
   const itemFormik = useFormik({
     initialValues: {
-      itemId: "",
-      Wdt: "",
-      Hgt: "",
-      Dpt: "",
-      Wgt: "",
-      Qty: "",
+      itemId: "2",
+      Wdt: "5",
+      Hgt: "5",
+      Dpt: "5",
+      Wgt: "5",
+      Qty: "2",
       vr: false
     },
     validationSchema: Yup.object({
@@ -279,6 +294,7 @@ const PackagingSetup = () => {
           onClick={() => {
             console.log(containerFormik.values);
             console.log(itemFormik.values);
+            sendPackage(containerFormik.values,itemFormik.values)
           }}
         >
           {texts.pack}
@@ -288,4 +304,10 @@ const PackagingSetup = () => {
   );
 };
 
-export default PackagingSetup;
+const mapStateToProps = (state: ReduxTypes) => {
+  return {
+    
+  };
+};
+
+export default connect(mapStateToProps, {sendPackage})(PackagingSetup);

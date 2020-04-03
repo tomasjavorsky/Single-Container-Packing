@@ -1,6 +1,7 @@
 export interface PackagingReducer {
   loading: boolean;
   loadingError: boolean;
+  shipmentDetails: any;
 }
 
 interface ReduxTypes {
