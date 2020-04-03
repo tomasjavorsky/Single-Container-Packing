@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const PackagingContainer = styled.div`
   width: 100%;
-	max-width: 1280px;
-	min-height: 640px;
+  max-width: 1280px;
+  min-height: 640px;
   display: flex;
   flex-direction: column;
   margin: 24px;
   background-color: #f5f5f6;
   border-radius: 3px;
-  box-shadow: 0 0 10px #424242;
+  box-shadow: 0 0 10px ${({ theme }) => theme.colors.shadow};
 `;
 
 export const Title = styled.h1`
@@ -57,4 +57,16 @@ export const StyledForm = styled.form`
 export const InputFieldWrapper = styled.div`
   flex: 1;
   margin-right: 8px;
+`;
+
+export const PackButton = styled.button`
+  width: 100px;
+  height: 40px;
+  margin: 24px;
+  background-color: ${({ theme }) => theme.colors.accent};
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 5px ${({ theme }) => theme.colors.shadow};
+  color: ${({ theme }) => theme.colors.text.white};
+  font-size: 18px;
 `;

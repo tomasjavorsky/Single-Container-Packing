@@ -12,7 +12,8 @@ const texts = {
     Qty: "Qty",
     Vr: "VR",
     Add: "Add Item"
-  }
+  },
+  pack: "Pack"
 };
 
 export default texts;

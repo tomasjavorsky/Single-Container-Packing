@@ -7,7 +7,8 @@ const styledTheme = {
   },
   colors: {
     primary: "#303f9f",
-    accent: "#ec407a",
+    accent: "#e91e63",
+    shadow: "#424242",
     text: {
       black: "#0000",
       white: "#FFF"

@@ -7,7 +7,8 @@ import {
   FormWrapper,
   FormTitle,
   StyledForm,
-  InputFieldWrapper
+  InputFieldWrapper,
+  PackButton
 } from "../components/PackagingSetup/styled";
 import texts from "../texts";
 import { useFormik } from "formik";
@@ -44,6 +45,7 @@ const PackagingSetup = () => {
       Hgt: "",
       Dpt: "",
       Wgt: "",
+      Qty: "",
       vr: false
     },
     validationSchema: Yup.object({
@@ -51,7 +53,8 @@ const PackagingSetup = () => {
       Wdt: Yup.number().required(),
       Hgt: Yup.number().required(),
       Dpt: Yup.number().required(),
-      Wgt: Yup.number().required()
+      Wgt: Yup.number().required(),
+      Qty: Yup.number().required(),
     }),
     onSubmit: values => {
       console.log(values);
@@ -243,6 +246,23 @@ const PackagingSetup = () => {
                   variant="outlined"
                 />
               </InputFieldWrapper>
+              <InputFieldWrapper>
+                <TextField
+                  id="Qty"
+                  name="Qty"
+                  error={
+                    itemFormik.touched.Qty && itemFormik.errors.Qty
+                      ? true
+                      : false
+                  }
+                  type="text"
+                  onChange={itemFormik.handleChange}
+                  onBlur={itemFormik.handleBlur}
+                  value={itemFormik.values.Qty}
+                  label={texts.containerForm.Qty}
+                  variant="outlined"
+                />
+              </InputFieldWrapper>
               <FormControlLabel
                 id="vr"
                 name="vr"
@@ -255,13 +275,14 @@ const PackagingSetup = () => {
             </StyledForm>
           </FormWrapper>
         </FormsWrapper>
-        <button
-          style={{ height: "50px", width: "50px" }}
+        <PackButton
           onClick={() => {
             console.log(containerFormik.values);
             console.log(itemFormik.values);
           }}
-        ></button>
+        >
+          {texts.pack}
+        </PackButton>
       </PackagingContainer>
     </MainContainer>
   );
