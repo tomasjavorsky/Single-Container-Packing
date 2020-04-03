@@ -10,7 +10,7 @@ const texts = {
     MaxWgt: "Max wgt",
     Wgt: "Wgt",
     Qty: "Qty",
-    VR: "VR",
+    Vr: "VR",
     Add: "Add Item"
   }
 };
