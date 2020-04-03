@@ -6,20 +6,19 @@ import store from "./store/configureStore";
 import { routes } from "./constants";
 import styledTheme from "./constants/globalTheme";
 import { ThemeProvider } from "styled-components";
+import PackagingSetup from "./pages/PackagingSetup";
 
 function App() {
   return (
-    <>
-      <Provider store={store}>
-        <ThemeProvider theme={styledTheme}>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path={routes.home} component={null} />
-            </Switch>
-          </BrowserRouter>
-        </ThemeProvider>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <ThemeProvider theme={styledTheme}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={routes.home} component={PackagingSetup} />
+          </Switch>
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
