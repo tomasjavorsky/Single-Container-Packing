@@ -35,7 +35,6 @@ function* sendNewPackageAsync(action) {
           type: PackagingActions.SEND_PACKAGE_FAILURE,
         });
       } else {
-        console.log(packagingData)
         yield put({
           type: PackagingActions.SEND_PACKAGE_SUCCESS,
           payload: packagingData

@@ -13,7 +13,8 @@ const texts = {
     Vr: "VR",
     Add: "Add Item"
   },
-  pack: "Pack"
+  pack: "Pack",
+  packingResult: "Packing result",
 };
 
 export default texts;

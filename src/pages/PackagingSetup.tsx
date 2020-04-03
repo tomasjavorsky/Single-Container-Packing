@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MainContainer } from "../components/MainContainer/styled";
 import {
   PackagingContainer,
@@ -19,20 +19,29 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { connect } from "react-redux";
 import ReduxTypes from "../store/@types";
 import { sendPackage } from "../store/packaging/actions";
+import {
+  ContainerInfoWrapper,
+  InfoWrapper,
+  InfoTitle,
+  InfoItem,
+  InfoItemUnderline
+} from "../components/PackagingInfo/styled";
 
 interface DispatchProps {
-  sendPackage: typeof sendPackage
+  sendPackage: typeof sendPackage;
 }
 
 interface StateProps {
-
+  shipmentDetails: any;
 }
 
-interface Props extends StateProps, DispatchProps {
+interface Props extends StateProps, DispatchProps {}
 
-}
+const PackagingSetup = ({ sendPackage, shipmentDetails }: Props) => {
+  useEffect(() => {
+    console.log(shipmentDetails);
+  }, [shipmentDetails]);
 
-const PackagingSetup = ({sendPackage}: Props) => {
   const containerFormik = useFormik({
     initialValues: {
       containerId: "1",
@@ -69,7 +78,7 @@ const PackagingSetup = ({sendPackage}: Props) => {
       Hgt: Yup.number().required(),
       Dpt: Yup.number().required(),
       Wgt: Yup.number().required(),
-      Qty: Yup.number().required(),
+      Qty: Yup.number().required()
     }),
     onSubmit: values => {
       console.log(values);
@@ -292,22 +301,43 @@ const PackagingSetup = ({sendPackage}: Props) => {
         </FormsWrapper>
         <PackButton
           onClick={() => {
-            console.log(containerFormik.values);
-            console.log(itemFormik.values);
-            sendPackage(containerFormik.values,itemFormik.values)
+            sendPackage(containerFormik.values, itemFormik.values);
           }}
         >
           {texts.pack}
         </PackButton>
       </PackagingContainer>
+      {shipmentDetails && (
+        <PackagingContainer>
+          <Title>{texts.packingResult}</Title>
+          <ContainerInfoWrapper>
+            <InfoWrapper>
+              <InfoTitle>{`Container ID: ${shipmentDetails.response.bins_packed[0].bin_data.id}`}</InfoTitle>
+            </InfoWrapper>
+            <InfoWrapper>
+              <InfoTitle>Dimensions:</InfoTitle>
+              <InfoItem>{`Width: ${shipmentDetails.response.bins_packed[0].bin_data.w}`}</InfoItem>
+              <InfoItem>{`Height: ${shipmentDetails.response.bins_packed[0].bin_data.h}`}</InfoItem>
+              <InfoItem>{`Depth: ${shipmentDetails.response.bins_packed[0].bin_data.d}`}</InfoItem>
+              <InfoItem>{`Max. wgt.: ${shipmentDetails.response.bins_packed[0].bin_data.weight}`}</InfoItem>
+            </InfoWrapper>
+            <InfoWrapper>
+              <InfoTitle>Packaging details:</InfoTitle>
+              <InfoItemUnderline>{`Packed items: ${shipmentDetails.response.bins_packed[0].items.length}`}</InfoItemUnderline>
+              <InfoItemUnderline>{`Space taken: ${shipmentDetails.response.bins_packed[0].bin_data.used_space}%`}</InfoItemUnderline>
+              <InfoItemUnderline>{`Weight taken: ${shipmentDetails.response.bins_packed[0].bin_data.used_weight}%`}</InfoItemUnderline>
+            </InfoWrapper>
+          </ContainerInfoWrapper>
+        </PackagingContainer>
+      )}
     </MainContainer>
   );
 };
 
 const mapStateToProps = (state: ReduxTypes) => {
   return {
-    
+    shipmentDetails: state.packagingReducer.shipmentDetails
   };
 };
 
-export default connect(mapStateToProps, {sendPackage})(PackagingSetup);
+export default connect(mapStateToProps, { sendPackage })(PackagingSetup);
