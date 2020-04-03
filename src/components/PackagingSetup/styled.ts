@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const PackagingContainer = styled.div`
   width: 100%;
-  max-width: 1080px;
-  height: 500px;
+	max-width: 1280px;
+	min-height: 640px;
   display: flex;
   flex-direction: column;
   margin: 24px;
@@ -18,20 +18,23 @@ export const Title = styled.h1`
   margin: 0;
   font-size: 40px;
   font-weight: 300;
-  background-color: #ffa726;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text.white};
 `;
 
 export const FormsWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
   @media screen and (min-width: ${({ theme }) => theme.layout.md}px) {
     flex-direction: row;
   }
 `;
 
 export const FormWrapper = styled.div`
-	width: 100%;
-	padding: 24px;
+  width: calc(100% - 48px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
   @media screen and (min-width: ${({ theme }) => theme.layout.md}px) {
     width: 50%;
   }
@@ -41,6 +44,17 @@ export const FormTitle = styled.h3`
   padding: 0;
   margin: 0;
   font-size: 30px;
-	font-weight: 300;
-	border-bottom: 2px solid #ffcc80;
+  font-weight: 300;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+  max-width: calc(100% - 48px);
+  margin-bottom: 24px;
+`;
+
+export const StyledForm = styled.form`
+  display: flex;
+`;
+
+export const InputFieldWrapper = styled.div`
+  flex: 1;
+  margin-right: 8px;
 `;
